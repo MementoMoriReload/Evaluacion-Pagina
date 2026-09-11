@@ -1,158 +1,159 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro</title>
     <link rel="stylesheet" href="registro.css" />
     <header>
-      <div class="logo">
-        <a class="return" href="InscripcionDuoc.html">
-          <h2 class="titulo">Inscripciones</h2>
-          <img src="descarga.png" alt="" />
-        </a>
-      </div>
-      <nav>
-        <a href="https://www.duoc.cl/" class="nav-link">Inicio</a>
-        <a href="https://www.duoc.cl/contacto-admision/" class="nav-link"
-          >Contacto</a
-        >
-      </nav>
+        <div class="logo">
+            <a class="return" href="InscripcionDuoc.html">
+                <h2 class="titulo">Inscripciones</h2>
+                <img src="descarga.png" alt="" />
+            </a>
+        </div>
+        <nav>
+            <a href="https://www.duoc.cl/" class="nav-link">Inicio</a>
+            <a href="https://www.duoc.cl/contacto-admision/" class="nav-link">Contacto</a>
+        </nav>
     </header>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="contenedor">
-      <div class="movimiento">
-        <h2>Registrar Movimiento</h2>
-        <div class="datos">
-          <div class="contenedor-registro">
-            <label>Nombre de la persona:</label>
-            <input type="text" id="Nombre" placeholder="Ingresa nombres" />
-            <label>Edificio:</label>
-            <select id="selectEdificio">
-              <option value="ed1">ED001 - Torre Central</option>
-              <option value="ed2 ">ED002 - Edificio Los Condes</option>
-              <option value="ed3">ED003 - Centro Empresarial Sur</option>
-              <option value="ed4">ED004 - Torre Norte</option>
-            </select>
-            <label>Tipo de movimiento:</label>
-      <div class="radioBtn">
-  <label class="btn-radio btn-entrada">
-    <input type="radio" name="tipo_registro" value="Entrada" checked>
-    <span>Entrada</span>
-  </label>
+        <div class="movimiento">
+            <h2>Registrar Movimiento</h2>
+            <div class="datos">
+                <div class="contenedor-registro">
+                    <label>Nombre de la persona:</label>
+                    <input type="text" id="nombre" placeholder="Ingresar nombres" />
+                    <span class="mensaje-error" id="errorNombre"></span>
+                    <label>Edificio:</label>
+                    <select id="selectEdificio">
+                        <option value="ed1">ED001 - Torre Central</option>
+                        <option value="ed2 ">ED002 - Edificio Los Condes</option>
+                        <option value="ed3">ED003 - Centro Empresarial Sur</option>
+                        <option value="ed4">ED004 - Torre Norte</option>
+                    </select>
+                    <label>Tipo de movimiento:</label>
+                    <div class="radioBtn">
+                        <label class="btn-radio btn-entrada">
+                            <input type="radio" name="tipo_registro" value="Entrada">
+                            <span>Entrada</span>
+                        </label>
 
-  <label class="btn-radio btn-entrada">
-    <input type="radio" name="tipo_registro" value="Entrada Visitante">
-    <span>Entrada<br>Visitante</span>
-  </label>
+                        <label class="btn-radio btn-entrada">
+                            <input type="radio" name="tipo_registro" value="Adentro">
+                            <span>Entrada<br>Visitante</span>
+                        </label>
 
-  <label class="btn-radio btn-salida">
-    <input type="radio" name="tipo_registro" value="Salida">
-    <span>Salida</span>
-  </label>
+                        <label class="btn-radio btn-salida">
+                            <input type="radio" name="tipo_registro" value="Fuera">
+                            <span>Salida</span>
+                        </label>
 
-  <label class="btn-radio btn-salida">
-    <input type="radio" name="tipo_registro" value="Salida Visitante">
-    <span>Salida<br>Visitante</span>
-  </label>
-</div>      
+                        <label class="btn-radio btn-salida">
+                            <input type="radio" name="tipo_registro" value="Fuera">
+                            <span>Salida<br>Visitante</span>
+                        </label>
+                    </div>
+                </div>
+                <button class="btn-registro" id="btn-registro">Registrar Movimiento</button>
+            </div>
+        </div>
     </div>
-    <button class="btn-registro" onclick="registrarMovimiento()">Registrar Movimiento</button>
-          </div>
-        </div>
-      </div>
-      <div class="edificio-header" onclick="toggleEdificio(this)">
-                <h3> ED001 - Torre Central</h3>
-                <small class="badge-contador" id="contador-edificio-a">0 dentro</small>
-            </div>
-            <div class="edificio-contenido">
-                <table class="tabla-personas">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-edificio-a">
-                        <tr class="fila-vacia">
-                            <td colspan="3">Sin registros de personas</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <div class="edificio-header" onclick="toggleEdificio(this)">
+        <h3> ED001 - Torre Central</h3>
+        <small class="badge-contador" id="contador-edificio-a">0 dentro</small>
+    </div>
+    <div class="edificio-contenido">
+        <table class="tabla-personas">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Hora</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-edificio-a">
+                <tr class="fila-vacia">
+                    <td colspan="3">Sin registros de personas</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
 
-        <div class="edificio-item">
-            <div class="edificio-header" onclick="toggleEdificio(this)">
-                <h3> ED002 - Edificio Los Condes</h3>
-                <small class="badge-contador" id="contador-edificio-b">0 dentro</small>
-            </div>
-            <div class="edificio-contenido">
-                <table class="tabla-personas">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-edificio-b">
-                        <tr class="fila-vacia">
-                            <td colspan="3">Sin registros de personas</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
+    <div class="edificio-item">
         <div class="edificio-header" onclick="toggleEdificio(this)">
-                <h3> ED003 - Centro Empresarial Sur</h3>
-                <small class="badge-contador" id="contador-edificio-a">0 dentro</small>
-            </div>
-            <div class="edificio-contenido">
-                <table class="tabla-personas">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-edificio-a">
-                        <tr class="fila-vacia">
-                            <td colspan="3">Sin registros de personas</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <h3> ED002 - Edificio Los Condes</h3>
+            <small class="badge-contador" id="contador-edificio-b">0 dentro</small>
         </div>
-
-        <div class="edificio-item">
-            <div class="edificio-header" onclick="toggleEdificio(this)">
-                <h3> ED004 - Torre Norte</h3>
-                <small class="badge-contador" id="contador-edificio-b">0 dentro</small>
-            </div>
-            <div class="edificio-contenido">
-                <table class="tabla-personas">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-edificio-b">
-                        <tr class="fila-vacia">
-                            <td colspan="3">Sin registros de personas</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="edificio-contenido">
+            <table class="tabla-personas">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Hora</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-edificio-b">
+                    <tr class="fila-vacia">
+                        <td colspan="3">Sin registros de personas</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-  </body>
-  <script src="registro.js"></script>
+
+    <div class="edificio-header" onclick="toggleEdificio(this)">
+        <h3> ED003 - Centro Empresarial Sur</h3>
+        <small class="badge-contador" id="contador-edificio-a">0 dentro</small>
+    </div>
+    <div class="edificio-contenido">
+        <table class="tabla-personas">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Hora</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-edificio-c">
+                <tr class="fila-vacia">
+                    <td colspan="3">Sin registros de personas</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+    <div class="edificio-item">
+        <div class="edificio-header" onclick="toggleEdificio(this)">
+            <h3> ED004 - Torre Norte</h3>
+            <small class="badge-contador" id="contador-edificio-b">0 dentro</small>
+        </div>
+        <div class="edificio-contenido">
+            <table class="tabla-personas">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Hora</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-edificio-d">
+                    <tr class="fila-vacia">
+                        <td colspan="3">Sin registros de personas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="registro.js"></script>
+
 </html>
