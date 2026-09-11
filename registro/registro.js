@@ -7,41 +7,102 @@ function toggleEdificio(headerElement) {
 
 const datosEdificios = {
     "ED001": [
-        { nombre: "Juan Pérez", estado: "Dentro", hora: "08:30 AM" },
-        { nombre: "María Gómez", estado: "Fuera", hora: "12:15 PM" },
-        { nombre: "Carlos Silva", estado: "Dentro", hora: "09:05 AM" }
+        { nombre: "Juan Pérez", rut:"2231624", estado: "Dentro", hora: "08:30" },
+        { nombre: "María Gómez", rut:"7196767", estado: "Fuera", hora: "12:15" },
+        { nombre: "Carlos Silva", rut:"26782404", estado: "Dentro", hora: "09:05" }
     ],
     "ED002": [
-        { nombre: "Ana Torres", estado: "Dentro", hora: "10:00" },
-        { nombre: "Pedro Morales", estado: "Fuera", hora: "11:40" }
+        { nombre: "Ana Torres", rut:"1725204", estado: "Dentro", hora: "10:00" },
+        { nombre: "Pedro Morales",rut:"1765202",  estado: "Fuera", hora: "11:40" }
     ],
     "ED003": [
-        { nombre: "Fernandito Silva", estado: "Dentro", hora: "10:00 AM" },
-        { nombre: "Anthony Miles", estado: "Fuera", hora: "11:40 AM" }
+        { nombre: "Fernandito Silva", rut:"21030202", estado: "Dentro", hora: "10:00" },
+        { nombre: "Anthony Miles", rut:"22030202", estado: "Fuera", hora: "11:40" }
     ],
     "ED004": [
-        { nombre: "Hernan Hernan", estado: "Dentro", hora: "1:00 PM" },
-        { nombre: "Pancho Floo", estado: "Fuera", hora: "13:50 PM" }
+        { nombre: "Hernan Hernan", rut:"28165492", estado: "Dentro", hora: "01:00" },
+        { nombre: "Pancho Floo", rut:"21620202",estado: "Fuera", hora: "01:50" }
     ]
 };
 
+function cargarDatosIniciales() {
+    for (const [idEdificio, listaPersonas] of Object.entries(datosEdificios)) {
+        const tbody = document.getElementById(`tbody-${idEdificio}`);
+        if (!tbody) continue;
+
+        if (listaPersonas.length > 0) {
+            tbody.innerHTML = '';
+        }
+
+        listaPersonas.forEach(p => {
+            const tr = document.createElement('tr');
+            tr.setAttribute('data-nombre', p.nombre.toLowerCase());
+
+            const tdNombre = document.createElement('td');
+            tdNombre.textContent = p.nombre;
+
+            const tdRut = document.createElement('td');
+            tdRut.textContent = p.rut;
+
+            const tdEstado = document.createElement('td');
+            const strongEstado = document.createElement('strong');
+            const esDentro = p.estado === 'Dentro';
+            strongEstado.className = `status ${esDentro ? 'dentro' : 'fuera'}`;
+            strongEstado.textContent = p.estado;
+            tdEstado.appendChild(strongEstado);
+
+            const tdHora = document.createElement('td');
+            tdHora.textContent = p.hora;
+
+            tr.appendChild(tdNombre);
+            tr.appendChild(tdRut);
+            tr.appendChild(tdEstado);
+            tr.appendChild(tdHora);
+
+            tbody.appendChild(tr);
+        });
+
+        actualizarContador(idEdificio);
+    }
+}
+
 btnregistro.addEventListener('click', function () {
     const idEdificio = document.getElementById('selectEdificio').value;
-    const nombreInput = document.getElementById('nombre').value.trim();
+    const inputNombre = document.getElementById('nombre');
+    const inputRut = document.getElementById('rut');
+    const nombreInput = inputNombre.value.trim();
+    const rutInput = inputRut.value.trim();
     const errorNombre = document.getElementById('errorNombre');
+    const errorRUT = document.getElementById('errorRUT');
 
-    if (nombreInput == '') {
+    if (nombreInput === '') {
         errorNombre.textContent = 'Tienes que agregar un nombre';
-        return
+        return;
     }
+    errorNombre.textContent = '';
+
+    
+    if (rutInput === '') {
+        errorNombre.textContent = 'Tienes que agregar un RUT';
+        return;
+    }
+    errorRUT.textContent = '';
 
     const radioSeleccionado = document.querySelector('input[name="tipo_registro"]:checked');
-    const nuevoEstado = radioSeleccionado.value;
+    if (!radioSeleccionado) {
+        alert('Por favor, selecciona un tipo de movimiento.');
+        return;
+    }
+
+    const valorRadio = radioSeleccionado.value;
+    const esEntrada = ['Entrada', 'Adentro', 'Dentro'].includes(valorRadio);
+    const nuevoEstado = esEntrada ? 'Dentro' : 'Fuera';
 
     const ahora = new Date();
-    const horaFormateada = ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const horaFormateada = ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 
     const tbody = document.getElementById(`tbody-${idEdificio}`);
+    if (!tbody) return;
 
     const filaVacia = tbody.querySelector('.fila-vacia');
     if (filaVacia) {
@@ -54,11 +115,10 @@ btnregistro.addEventListener('click', function () {
 
     if (filaPersona) {
         const tdEstado = filaPersona.children[1].querySelector('strong');
-        tdEstado.className = `status ${nuevoEstado === 'Dentro' ? 'dentro' : 'fuera'}`;
+        tdEstado.className = `status ${esEntrada ? 'dentro' : 'fuera'}`;
         tdEstado.textContent = nuevoEstado;
 
-        filaPersona.children[2].textContent = horaFormateada;
-
+        filaPersona.children[3].textContent = horaFormateada;
     } else {
         const tr = document.createElement('tr');
         tr.setAttribute('data-nombre', nombreInput.toLowerCase());
@@ -66,9 +126,12 @@ btnregistro.addEventListener('click', function () {
         const tdNombre = document.createElement('td');
         tdNombre.textContent = nombreInput;
 
+        const tdRut = document.createElement('td');
+        tdRut.textContent = rutInput;
+
         const tdEstado = document.createElement('td');
         const strongEstado = document.createElement('strong');
-        strongEstado.className = `status ${nuevoEstado === 'Dentro' ? 'dentro' : 'fuera'}`;
+        strongEstado.className = `status ${esEntrada ? 'dentro' : 'fuera'}`;
         strongEstado.textContent = nuevoEstado;
         tdEstado.appendChild(strongEstado);
 
@@ -76,20 +139,28 @@ btnregistro.addEventListener('click', function () {
         tdHora.textContent = horaFormateada;
 
         tr.appendChild(tdNombre);
+        tr.appendChild(tdRut);
         tr.appendChild(tdEstado);
         tr.appendChild(tdHora);
 
         tbody.appendChild(tr);
     }
 
-    document.getElementById('inputNombre').value = '';
+    inputNombre.value = '';
+    inputRut.value = '';
     actualizarContador(idEdificio);
-})
+});
 
 function actualizarContador(idEdificio) {
     const tbody = document.getElementById(`tbody-${idEdificio}`);
+    if (!tbody) return;
+
     const estadosDentro = Array.from(tbody.querySelectorAll('.status.dentro'));
     const badge = document.getElementById(`contador-${idEdificio}`);
 
-    badge.textContent = `${estadosDentro.length} dentro`;
+    if (badge) {
+        badge.textContent = `${estadosDentro.length} dentro`;
+    }
 }
+
+cargarDatosIniciales();
