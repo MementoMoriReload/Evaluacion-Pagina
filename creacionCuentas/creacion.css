@@ -17,7 +17,7 @@ a {
 }
 
 
-/*Encabezado prinicipal*/
+/*ENCABEZADO PRINCIPAL*/
 .encabezado-principal {
     background-color: #869bb8; 
     color: #ced9e9;
@@ -46,7 +46,7 @@ a {
     padding: 0.5rem;
 }
 
-/*Contenedor de formulario*/
+/*CONTENEDOR FORM*/
 .contenedor-principal {
     flex: 1;
     display: flex;
@@ -54,7 +54,6 @@ a {
     align-items: flex-start;
     padding: 2.5rem 1rem;
 }
-
 .tarjeta-formulario {
     background-color: #ffffff;
     max-width: 750px;
@@ -63,15 +62,14 @@ a {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-
 .encabezado-formulario h2 {
     color: #1a365d;
     font-size: 1.6rem;
     margin-bottom: 0.4rem;
 }
-
 .encabezado-formulario p {
     color: #718096;
     font-size: 0.95rem;
     margin-bottom: 1.8rem;
 }
+

@@ -36,7 +36,7 @@
                     <legend>1. Información Personal</legend>
 
                     <div class="campo-form">
-                        <label for="RUN/RUT"<span class="requerido">*</span>:</label>
+                        <label for="RUN/RUT"<span class="requerido"></span></label>
                         <input 
                             type="text"
                             id="run"
@@ -44,25 +44,63 @@
                             placeholder="123456789 (sin puntos ni guion)"
                             maxlength="9"
                             required>
-                        <small class="ayuda">Por favor, ingresa un RUN/RUT válido. Sin puntos ni guion.</small>
                         <span class="msj-error" id="error-run"></span>
                     </div>
 
                     <div class="campos">
-                        <div class="campos columna-media">
-                            <label for="Nombre" <span class="requerido">*</span>:</label>
+                        <div class="campos_columna-media">
+                            <label for="Nombre" <span class="requerido"></span></label>
                             <input
                                 type="text"
                                 id="nombre"
                                 name="nombre"
                                 placeholder="Ingrese su Nombre"
-                                maxlength="50"
+                                maxlength="30"
                                 required>
-                            <small class="ayuda">Debe ingresar nombre y apellido</small>
                             <span class="msj-error" id="error-nombre"></span>
                         </div>
-
-                        
+                        <div class="campos_columna-media">
+                            <label for="apellido" <span class="requerido"></span></label>
+                            <input
+                                type="text"
+                                id="apellido"
+                                name="apellido"
+                                placeholder="Ingrese su Apellido"
+                                maxlength="40"
+                                required>
+                            <span class="msj-error" id="error-apellido">*</span>
+                        </div>
+                        <div class="campos_columna-media">
+                            <label for="fechaNacimiento">Fecha de Nacimiento <span class="requerido"></span></label>
+                            <input
+                                type="date"
+                                id="fechaNac"
+                                name="fechaNac"
+                                required>
+                            <span class="msj-error" id="error-fechaNac">*</span>
+                        </div>
+                        <div class="campos_columna-media">
+                        <label for="numTelefono">Número de Telefono <span class="requerido"></span></label>
+                        <input
+                            type="tel"
+                            id="telefono"
+                            name="telefono"
+                            placeholder="12345678"
+                            maxlength="8"
+                            required>
+                            <label for="msj-error" id="error-Telefono">*</label>
+                        </div>
+                        <div class="campos_columna-media">
+                            <label for="email" <span class="requerido"></span></label
+                            <input
+                                type="text"
+                                id="email"
+                                name="email"
+                                placeholder="correo.electronico@dominio.com/cl"
+                                maxlength="80"
+                                required>
+                            <label for="msj-error" id="error-email">*</label>
+                        </div>
                     </div>
 
                 </fieldset>
