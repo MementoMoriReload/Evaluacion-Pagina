@@ -24,8 +24,53 @@
             </ul>
         </nav>
     </header>
+    <main class="contenedor-rincipal">
+        <seccion class="tarjeta-form">
+            <header class="encabezado-form">
+                <h2 class="class">Crear Nueva Cuenta de Usuario</h2>
+                <p>Ingresa los datos solicitados para crear tu cuenta.</p>
+            </header>
 
-    
+            <form id="formRegistro" action="#" method="POST" novalidate>
+                <fieldset class="seccion-form">
+                    <legend>1. Información Personal</legend>
+
+                    <div class="campo-form">
+                        <label for="RUN/RUT"<span class="requerido">*</span>:</label>
+                        <input 
+                            type="text"
+                            id="run"
+                            name="run"
+                            placeholder="123456789 (sin puntos ni guion)"
+                            maxlength="9"
+                            required>
+                        <small class="ayuda">Por favor, ingresa un RUN/RUT válido. Sin puntos ni guion.</small>
+                        <span class="msj-error" id="error-run"></span>
+                    </div>
+
+                    <div class="campos">
+                        <div class="campos columna-media">
+                            <label for="Nombre" <span class="requerido">*</span>:</label>
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                placeholder="Ingrese su Nombre"
+                                maxlength="50"
+                                required>
+                            <small class="ayuda">Debe ingresar nombre y apellido</small>
+                            <span class="msj-error" id="error-nombre"></span>
+                        </div>
+
+                        
+                    </div>
+
+                </fieldset>
+            </form>
+        </seccion>
+    </main>
+
+
     
 </body>
 </html>
