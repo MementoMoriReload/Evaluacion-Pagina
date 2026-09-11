@@ -115,7 +115,13 @@ input[type='radio']:checked+label {
   font-weight: bold;
 }
 
-.datos {}
+.mensaje-error {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+  min-height: 15px;
+  text-align: center;
+}
 
 .contenedor-registro {
   margin-bottom: 15px;
@@ -127,7 +133,7 @@ input[type='radio']:checked+label {
 header {
   display: flex;
   height: 75px;
-  background-color: #002138;
+  background-color: Grey;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -150,8 +156,6 @@ header {
   align-items: center;
   user-select: none;
 }
-
-
 
 .badge-contador {
   background-color: white;
