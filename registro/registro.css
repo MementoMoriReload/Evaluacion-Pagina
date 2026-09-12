@@ -50,6 +50,10 @@ a {
   padding: 0.5rem;
 }
 
+.enlace-nav.activo {
+  border-bottom: 2px solid #04296d;
+}
+
 .principal {
   display: flex;
   gap: 30px;
