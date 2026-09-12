@@ -25,31 +25,31 @@
         </nav>
     </header>
     <main class="contenedor-rincipal">
-        <seccion class="tarjeta-form">
+        <section class="tarjeta-form">
             <header class="encabezado-form">
                 <h2 class="class">Crear Nueva Cuenta de Usuario</h2>
                 <p>Ingresa los datos solicitados para crear tu cuenta.</p>
+                <hr class="divisor">
             </header>
 
             <form id="formRegistro" action="#" method="POST" novalidate>
                 <fieldset class="seccion-form">
                     <legend>1. Información Personal</legend>
 
-                    <div class="campo-form">
-                        <label for="RUN/RUT"<span class="requerido"></span></label>
-                        <input 
-                            type="text"
-                            id="run"
-                            name="run"
-                            placeholder="123456789 (sin puntos ni guion)"
-                            maxlength="9"
-                            required>
-                        <span class="msj-error" id="error-run"></span>
-                    </div>
-
                     <div class="campos">
-                        <div class="campos_columna-media">
-                            <label for="Nombre" <span class="requerido"></span></label>
+                        <div class="campo-form">
+                            <label for="RUT">RUT<span class="requerido">*</span></label>
+                            <input 
+                                type="text"
+                                id="run"
+                                name="run"
+                                placeholder="123456789 (sin puntos ni guion)"
+                                maxlength="9"
+                                required>
+                            <span class="msj-error" id="error-run"></span>
+                        </div>
+                        <div class="campo-form">
+                            <label for="Nombre">Nombre<span class="requerido">*</span></label>
                             <input
                                 type="text"
                                 id="nombre"
@@ -59,8 +59,8 @@
                                 required>
                             <span class="msj-error" id="error-nombre"></span>
                         </div>
-                        <div class="campos_columna-media">
-                            <label for="apellido" <span class="requerido"></span></label>
+                        <div class="campo-form">
+                            <label for="apellido">Apellido<span class="requerido">*</span></label>
                             <input
                                 type="text"
                                 id="apellido"
@@ -68,30 +68,33 @@
                                 placeholder="Ingrese su Apellido"
                                 maxlength="40"
                                 required>
-                            <span class="msj-error" id="error-apellido">*</span>
+                            <span class="msj-error" id="error-apellido"></span>
                         </div>
-                        <div class="campos_columna-media">
-                            <label for="fechaNacimiento">Fecha de Nacimiento <span class="requerido"></span></label>
+                        <div class="campo-form">
+                            <label for="fechaNacimiento">Fecha de Nacimiento<span class="requerido">*</span></label>
                             <input
                                 type="date"
                                 id="fechaNac"
                                 name="fechaNac"
                                 required>
-                            <span class="msj-error" id="error-fechaNac">*</span>
+                            <span class="msj-error" id="error-fechaNac"></span>
                         </div>
-                        <div class="campos_columna-media">
-                        <label for="numTelefono">Número de Telefono <span class="requerido"></span></label>
-                        <input
-                            type="tel"
-                            id="telefono"
-                            name="telefono"
-                            placeholder="12345678"
-                            maxlength="8"
-                            required>
-                            <label for="msj-error" id="error-Telefono">*</label>
+                        <div class="campo-form">
+                            <label for="numTelefono">Número de Telefono<span class="requerido">*</span></label>
+                            <div class="phone">
+                                <span>+569</span>
+                                <input
+                                type="tel"
+                                id="telefono"
+                                name="telefono"
+                                placeholder="12345678"
+                                maxlength="8"
+                                required>
+                            </div>
+                            <label for="msj-error" id="error-Telefono"></label>
                         </div>
-                        <div class="campos_columna-media">
-                            <label for="email" <span class="requerido"></span></label
+                        <div class="campo-form">
+                            <label for="email">Email<span class="requerido">*</span></label>
                             <input
                                 type="text"
                                 id="email"
@@ -99,10 +102,10 @@
                                 placeholder="correo.electronico@dominio.com/cl"
                                 maxlength="80"
                                 required>
-                            <label for="msj-error" id="error-email">*</label>
+                            <label for="msj-error" id="error-email"></label>
                         </div>
                     </div>
-
+                    <button type="submit" class="btn-enviar">Crear Cuenta</button>
                 </fieldset>
             </form>
         </seccion>

@@ -28,7 +28,7 @@ a {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 .titulo-empresa {
-    color:#0c3581;
+    color:#04296d;
     font-size: 2.25rem;
     line-height: 1;
 }
@@ -48,28 +48,87 @@ a {
 
 /*CONTENEDOR FORM*/
 .contenedor-principal {
-    flex: 1;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 2.5rem 1rem;
-}
-.tarjeta-formulario {
-    background-color: #ffffff;
-    max-width: 750px;
+    align-items: center;
     width: 100%;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-.encabezado-formulario h2 {
-    color: #1a365d;
+.tarjeta-form {
+    margin: auto;
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem 1.8rem;
+    border-radius: 12px;
+    border: 1px solid #869bb8;
+    box-shadow: 0 10px 25px #04296d
+}
+.encabezado-form h2 {
+    color: #04296d;
     font-size: 1.6rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
 }
-.encabezado-formulario p {
-    color: #718096;
-    font-size: 0.95rem;
-    margin-bottom: 1.8rem;
+.encabezado-form p {
+    color: #04296d;
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
+.divisor {
+    border: none;
+    height: 1px;
+    background-color: #869bb8;
+    margin-bottom: 1rem;
+}
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.9rem;
+}
+label {
+    font-size: 0.85rem;
+    color: #04296d;
+}
+.requerido {
+    color: #e53e3e;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="phone"] {
+    width: 100%;
+    padding: 0.20rem;
+    border: 1px solid #cbd5e0;
+}
+
+.phone { display: flex; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; }
+.phone span { background: #ced9e9; padding: 8px; border-right: 1px solid #ccc; }
+.phone input { border: none; outline: none; padding: 8px; flex: 1; }
+
+/*BOTON*/
+.btn-enviar {
+    width: 100%;
+    background-color: #04296d;
+    color: #ffffff;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-enviar:hover {
+    background-color: #ced9e9;
+}
+
+.msj-error {
+    font-size: 0.75rem;
+    color: #e53e3e;
+    margin-top: 0.2rem;
+}
+
+
+
+
+
+
 
