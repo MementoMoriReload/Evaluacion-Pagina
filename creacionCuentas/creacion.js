@@ -11,13 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!msjNotificacion) return;
 
         msjNotificacion.textContent = texto;
-        
-        if (tipo === 'eliminar') {
-            msjNotificacion.className = 'msj-eliminar';
-        } else {
-            msjNotificacion.className = 'msj-exito';
-        }
-
+        msjNotificacion.className = tipo === 'eliminar' ? 'msj-eliminar' : 'msj-exito';
         msjNotificacion.style.display = 'block';
 
         setTimeout(() => {
@@ -26,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function limpiarErrores() {
+        document.getElementById('error-tipoUsuario').textContent = '';
         document.getElementById('error-run').textContent = '';
         document.getElementById('error-nombre').textContent = '';
         document.getElementById('error-apellido').textContent = '';
@@ -38,12 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
         limpiarErrores();
         let esValido = true;
 
+        const tipoUsuario = document.getElementById('tipoUsuario').value;
         const run = document.getElementById('run').value.trim();
         const nombre = document.getElementById('nombre').value.trim();
         const apellido = document.getElementById('apellido').value.trim();
         const fechaNac = document.getElementById('fechaNac').value;
         const telefono = document.getElementById('telefono').value.trim();
         const email = document.getElementById('email').value.trim();
+
+        if (tipoUsuario === '') {
+            document.getElementById('error-tipoUsuario').textContent = 'Debe seleccionar un tipo de usuario.';
+            esValido = false;
+        }
 
         if (run === '') {
             document.getElementById('error-run').textContent = 'El RUT es obligatorio.';
@@ -96,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!validarFormulario()) return;
 
         const usuario = {
+            tipoUsuario: document.getElementById('tipoUsuario').value,
             run: document.getElementById('run').value.trim(),
             nombre: document.getElementById('nombre').value.trim(),
             apellido: document.getElementById('apellido').value.trim(),
@@ -134,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tarjetaItem.innerHTML = `
                 <div class="info-usuario">
                     <h4>${user.nombre} ${user.apellido}</h4>
+                    <p><strong>Tipo:</strong> ${user.tipoUsuario}</p>
                     <p><strong>RUT:</strong> ${user.run}</p>
                     <p><strong>Email:</strong> ${user.email}</p>
                     <p><strong>Teléfono:</strong> +569 ${user.telefono}</p>
@@ -152,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.editarUsuario = function(index) {
         limpiarErrores();
         const u = usuarios[index];
+        document.getElementById('tipoUsuario').value = u.tipoUsuario;
         document.getElementById('run').value = u.run;
         document.getElementById('nombre').value = u.nombre;
         document.getElementById('apellido').value = u.apellido;

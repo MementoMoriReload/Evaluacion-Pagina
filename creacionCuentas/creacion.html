@@ -9,7 +9,7 @@
 <body>
     <header class="encabezado-principal">
         <div class="contenedor-logo">
-            <a href="index.html" class="enlace-logo">
+            <a>
                 <h1 class="titulo-empresa">Acceso Seguro</h1>
                 <span class="subtitulo-empresa">Soluciones de control de acceso y asistencia</span>
             </a>
@@ -17,12 +17,13 @@
 
         <nav class="navegacion-principal">
             <ul>
-                <li><a href="index.html" class="enlace-nav">Inicio</a></li>
+                <li><a href="inicio.html" class="enlace-nav">Inicio</a></li>
                 <li><a href="registro.html" class="enlace-nav destacado">Control Entradas-Salidas</a></li>
                 <li><a href="login.html" class="enlace-nav">Iniciar Sesión</a></li>
-                <li><a href="crear_cuenta.html" class="enlace-nav activo">Crear Cuenta</a></li>
+                <li><a href="creacion.html" class="enlace-nav activo">Crear Cuenta</a></li>
             </ul>
         </nav>
+        <img src="Logo2.png" alt="Logo Acceso Seguro" class="img-logo">
     </header>
 
     <main class="contenedor-principal">
@@ -38,6 +39,20 @@
                     <legend>1. Información Personal</legend>
 
                     <div class="campos">
+                        <div class="campo-form">
+                            <label for="tipoUsuario">Tipo de Usuario<span class="requerido">*</span></label>
+                            <select id="tipoUsuario" name="tipoUsuario" required>
+                                <option value="">Seleccione un tipo...</option>
+                                <option value="Empleado">Empleado</option>
+                                <option value="Visitante">Visitante</option>
+                                <option value="Guardia de Seguridad">Guardia de Seguridad</option>
+                                <option value="Supervisor de Control">Supervisor de Control</option>
+                                <option value="Jefe de Operaciones">Jefe de Operaciones</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                            <span class="msj-error" id="error-tipoUsuario"></span>
+                        </div>
+
                         <div class="campo-form">
                             <label for="run">RUT<span class="requerido">*</span></label>
                             <input type="text" id="run" name="run" placeholder="123456789 (sin puntos ni guion)" maxlength="9" required>
@@ -87,8 +102,7 @@
                     <h2>Usuarios Registrados</h2>
                     <p>Lista de usuarios ingresados en el sistema.</p>
                 </header>
-                <div id="msjNotificacion" class="msj-exito"></div>
-                <div id="msjNotificacion" class="msj-eliminar"></div>
+                <div id="msjNotificacion"></div>
                 <div id="listUsuarios" class="contenedor-usuarios">
                     <p class="sin-registros">No hay usuarios registrados.</p>
                 </div>
