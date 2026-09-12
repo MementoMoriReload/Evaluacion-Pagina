@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creacion de Cuentas</title>
+    <title>Creación de Cuentas</title>
     <link rel="stylesheet" href="creacion.css">
 </head>
 <body>
     <header class="encabezado-principal">
         <div class="contenedor-logo">
-            <a href="index.html" class="enlace-logo">
+            <a>
                 <h1 class="titulo-empresa">Acceso Seguro</h1>
                 <span class="subtitulo-empresa">Soluciones de control de acceso y asistencia</span>
             </a>
@@ -17,60 +17,99 @@
 
         <nav class="navegacion-principal">
             <ul>
-                <li><a href="index.html" class="enlace-nav">Inicio</a></li>
+                <li><a href="inicio.html" class="enlace-nav">Inicio</a></li>
                 <li><a href="registro.html" class="enlace-nav destacado">Control Entradas-Salidas</a></li>
                 <li><a href="login.html" class="enlace-nav">Iniciar Sesión</a></li>
-                <li><a href="crear_cuenta.html" class="enlace-nav activo">Crear Cuenta</a></li>
+                <li><a href="creacion.html" class="enlace-nav activo">Crear Cuenta</a></li>
             </ul>
         </nav>
+        <img src="Logo2.png" alt="Logo Acceso Seguro" class="img-logo">
     </header>
-    <main class="contenedor-rincipal">
-        <seccion class="tarjeta-form">
+
+    <main class="contenedor-principal">
+        <section class="tarjeta-form">
             <header class="encabezado-form">
-                <h2 class="class">Crear Nueva Cuenta de Usuario</h2>
+                <h2>Crear Nueva Cuenta de Usuario</h2>
                 <p>Ingresa los datos solicitados para crear tu cuenta.</p>
+                <hr class="divisor">
             </header>
 
             <form id="formRegistro" action="#" method="POST" novalidate>
                 <fieldset class="seccion-form">
                     <legend>1. Información Personal</legend>
 
-                    <div class="campo-form">
-                        <label for="RUN/RUT"<span class="requerido">*</span>:</label>
-                        <input 
-                            type="text"
-                            id="run"
-                            name="run"
-                            placeholder="123456789 (sin puntos ni guion)"
-                            maxlength="9"
-                            required>
-                        <small class="ayuda">Por favor, ingresa un RUN/RUT válido. Sin puntos ni guion.</small>
-                        <span class="msj-error" id="error-run"></span>
-                    </div>
-
                     <div class="campos">
-                        <div class="campos columna-media">
-                            <label for="Nombre" <span class="requerido">*</span>:</label>
-                            <input
-                                type="text"
-                                id="nombre"
-                                name="nombre"
-                                placeholder="Ingrese su Nombre"
-                                maxlength="50"
-                                required>
-                            <small class="ayuda">Debe ingresar nombre y apellido</small>
+                        <div class="campo-form">
+                            <label for="tipoUsuario">Tipo de Usuario<span class="requerido">*</span></label>
+                            <select id="tipoUsuario" name="tipoUsuario" required>
+                                <option value="">Seleccione un tipo...</option>
+                                <option value="Empleado">Empleado</option>
+                                <option value="Visitante">Visitante</option>
+                                <option value="Guardia de Seguridad">Guardia de Seguridad</option>
+                                <option value="Supervisor de Control">Supervisor de Control</option>
+                                <option value="Jefe de Operaciones">Jefe de Operaciones</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                            <span class="msj-error" id="error-tipoUsuario"></span>
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="run">RUT<span class="requerido">*</span></label>
+                            <input type="text" id="run" name="run" placeholder="123456789 (sin puntos ni guion)" maxlength="9" required>
+                            <span class="msj-error" id="error-run"></span>
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="nombre">Nombre<span class="requerido">*</span></label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ingrese su Nombre" maxlength="30" required>
                             <span class="msj-error" id="error-nombre"></span>
                         </div>
 
-                        
+                        <div class="campo-form">
+                            <label for="apellido">Apellido<span class="requerido">*</span></label>
+                            <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido" maxlength="40" required>
+                            <span class="msj-error" id="error-apellido"></span>
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="fechaNac">Fecha de Nacimiento<span class="requerido">*</span></label>
+                            <input type="date" id="fechaNac" name="fechaNac" required>
+                            <span class="msj-error" id="error-fechaNac"></span>
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="telefono">Número de Teléfono<span class="requerido">*</span></label>
+                            <div class="phone">
+                                <span>+569</span>
+                                <input type="tel" id="telefono" name="telefono" placeholder="12345678" maxlength="8" required>
+                            </div>
+                            <span class="msj-error" id="error-telefono"></span>
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="email">Email<span class="requerido">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="correo.electronico@dominio.com" maxlength="80" required>
+                            <span class="msj-error" id="error-email"></span>
+                        </div>
                     </div>
 
+                    <button type="submit" class="btn-enviar">Crear Cuenta</button>
                 </fieldset>
             </form>
-        </seccion>
+
+            <div class="tarjeta-registro">
+                <header class="encabezado-registro">
+                    <h2>Usuarios Registrados</h2>
+                    <p>Lista de usuarios ingresados en el sistema.</p>
+                </header>
+                <div id="msjNotificacion"></div>
+                <div id="listUsuarios" class="contenedor-usuarios">
+                    <p class="sin-registros">No hay usuarios registrados.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-
-    
+    <script src="creacion.js"></script>
 </body>
 </html>

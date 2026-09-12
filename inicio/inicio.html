@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Acceso Seguro</title>
+    <link rel="stylesheet" href="inicio.css">
+</head>
+<body>
+    <header class="encabezado-principal">
+        <div class="contenedor-logo">
+            <a>
+                <div class="texto-logo">
+                    <h1 class="titulo-empresa">Acceso Seguro</h1>
+                    <span class="subtitulo-empresa">Soluciones de control de acceso y asistencia</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="navegacion-principal">
+            <ul>
+                <li><a href="inicio.html" class="enlace-nav activo">Inicio</a></li>
+                <li><a href="registro.html" class="enlace-nav destacado">Control Entradas-Salidas</a></li>
+                <li><a href="login.html" class="enlace-nav">Iniciar Sesión</a></li>
+                <li><a href="creacion.html" class="enlace-nav">Crear Cuenta</a></li>
+            </ul>
+        </nav>
+
+        <img src="Logo2.png" alt="Logo Acceso Seguro" class="img-logo">
+    </header>
+
+    <main class="contenedor-inicio">
+        <section class="banner-bienvenida">
+            <h2>Portal de Control de Acceso</h2>
+            <p id="mensajeEstado">Cargando estado del sistema...</p>
+            <div id="reloj" class="reloj-vivo">--:--:--</div>
+        </section>
+
+        <section class="grid-modulos">
+            <article class="tarjeta-modulo">
+                <h3>Control de Entrada-Salida</h3>
+                <p>Marcaje en tiempo real para empleados y visitantes.</p>
+                <a href="registro.html" class="btn-acceso">Ir a Control</a>
+            </article>
+
+            <article class="tarjeta-modulo">
+                <h3>Creacion de Cuentas</h3>
+                <p>Registro y edición de perfiles de usuario.</p>
+                <a href="creacion.html" class="btn-acceso">Crear Cuentas</a>
+            </article>
+
+            <article class="tarjeta-modulo">
+                <h3>Autenticación</h3>
+                <p>Ingreso seguro para guardias y supervisores.</p>
+                <a href="login.html" class="btn-acceso">Iniciar Sesión</a>
+            </article>
+        </section>
+    </main>
+
+    <script src="inicio.js"></script>
+</body>
+</html>
