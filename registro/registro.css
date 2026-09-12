@@ -157,6 +157,7 @@ a {
   cursor: pointer;
   color: white;
   font-size: 0.85rem;
+  transition: background-color 0.2s;
 }
 
 .btn-entrada {
@@ -176,15 +177,25 @@ a {
   display: none;
 }
 
+.btn-radio:hover {
+  background-color: #214387;
+}
+
+
 .btn-registro {
+  display: inline-block;
+  text-align: center;
   background-color: #04296d;
-  color: white;
-  border: 2px solid white;
-  padding: 12px 30px;
-  border-radius: 25px;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: bold;
+  color: #ffffff;
+  padding: 0.6rem 3rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-registro:hover {
+  background-color: #214387;
 }
 
 .mensaje-error {
