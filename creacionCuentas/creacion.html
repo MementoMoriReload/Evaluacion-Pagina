@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creacion de Cuentas</title>
+    <title>Creación de Cuentas</title>
     <link rel="stylesheet" href="creacion.css">
 </head>
 <body>
@@ -24,10 +24,11 @@
             </ul>
         </nav>
     </header>
-    <main class="contenedor-rincipal">
+
+    <main class="contenedor-principal">
         <section class="tarjeta-form">
             <header class="encabezado-form">
-                <h2 class="class">Crear Nueva Cuenta de Usuario</h2>
+                <h2>Crear Nueva Cuenta de Usuario</h2>
                 <p>Ingresa los datos solicitados para crear tu cuenta.</p>
                 <hr class="divisor">
             </header>
@@ -38,90 +39,63 @@
 
                     <div class="campos">
                         <div class="campo-form">
-                            <label for="RUT">RUT<span class="requerido">*</span></label>
-                            <input 
-                                type="text"
-                                id="run"
-                                name="run"
-                                placeholder="123456789 (sin puntos ni guion)"
-                                maxlength="9"
-                                required>
+                            <label for="run">RUT<span class="requerido">*</span></label>
+                            <input type="text" id="run" name="run" placeholder="123456789 (sin puntos ni guion)" maxlength="9" required>
                             <span class="msj-error" id="error-run"></span>
                         </div>
+
                         <div class="campo-form">
-                            <label for="Nombre">Nombre<span class="requerido">*</span></label>
-                            <input
-                                type="text"
-                                id="nombre"
-                                name="nombre"
-                                placeholder="Ingrese su Nombre"
-                                maxlength="30"
-                                required>
+                            <label for="nombre">Nombre<span class="requerido">*</span></label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ingrese su Nombre" maxlength="30" required>
                             <span class="msj-error" id="error-nombre"></span>
                         </div>
+
                         <div class="campo-form">
                             <label for="apellido">Apellido<span class="requerido">*</span></label>
-                            <input
-                                type="text"
-                                id="apellido"
-                                name="apellido"
-                                placeholder="Ingrese su Apellido"
-                                maxlength="40"
-                                required>
+                            <input type="text" id="apellido" name="apellido" placeholder="Ingrese su Apellido" maxlength="40" required>
                             <span class="msj-error" id="error-apellido"></span>
                         </div>
+
                         <div class="campo-form">
-                            <label for="fechaNacimiento">Fecha de Nacimiento<span class="requerido">*</span></label>
-                            <input
-                                type="date"
-                                id="fechaNac"
-                                name="fechaNac"
-                                required>
+                            <label for="fechaNac">Fecha de Nacimiento<span class="requerido">*</span></label>
+                            <input type="date" id="fechaNac" name="fechaNac" required>
                             <span class="msj-error" id="error-fechaNac"></span>
                         </div>
+
                         <div class="campo-form">
-                            <label for="numTelefono">Número de Telefono<span class="requerido">*</span></label>
+                            <label for="telefono">Número de Teléfono<span class="requerido">*</span></label>
                             <div class="phone">
                                 <span>+569</span>
-                                <input
-                                type="tel"
-                                id="telefono"
-                                name="telefono"
-                                placeholder="12345678"
-                                maxlength="8"
-                                required>
+                                <input type="tel" id="telefono" name="telefono" placeholder="12345678" maxlength="8" required>
                             </div>
-                            <label for="msj-error" id="error-Telefono"></label>
+                            <span class="msj-error" id="error-telefono"></span>
                         </div>
+
                         <div class="campo-form">
                             <label for="email">Email<span class="requerido">*</span></label>
-                            <input
-                                type="text"
-                                id="email"
-                                name="email"
-                                placeholder="correo.electronico@dominio.com/cl"
-                                maxlength="80"
-                                required>
-                            <label for="msj-error" id="error-email"></label>
+                            <input type="email" id="email" name="email" placeholder="correo.electronico@dominio.com" maxlength="80" required>
+                            <span class="msj-error" id="error-email"></span>
                         </div>
                     </div>
+
                     <button type="submit" class="btn-enviar">Crear Cuenta</button>
                 </fieldset>
             </form>
 
             <div class="tarjeta-registro">
                 <header class="encabezado-registro">
-                    <h2>Usuarios Regitrados</h2>
+                    <h2>Usuarios Registrados</h2>
                     <p>Lista de usuarios ingresados en el sistema.</p>
                 </header>
+                <div id="msjNotificacion" class="msj-exito"></div>
+                <div id="msjNotificacion" class="msj-eliminar"></div>
                 <div id="listUsuarios" class="contenedor-usuarios">
                     <p class="sin-registros">No hay usuarios registrados.</p>
                 </div>
             </div>
-        </seccion>
+        </section>
     </main>
 
-<script src="creacion.js"></script>
-    
+    <script src="creacion.js"></script>
 </body>
 </html>

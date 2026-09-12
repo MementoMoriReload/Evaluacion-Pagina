@@ -62,7 +62,6 @@ a {
 .encabezado-form h2 {
     color: #04296d;
     font-size: 1.6rem;
-    margin-bottom: 0.5rem;
 }
 .encabezado-form p {
     color: #04296d;
@@ -123,6 +122,9 @@ input[type="phone"] {
 }
 
 /*TARJETA DE REGISTRADOS*/
+.encabezado-registro {
+    margin-bottom: 1rem; 
+}
 .tarjeta-registro{
     width: 100%;
     max-width: 450%;
@@ -145,9 +147,9 @@ input[type="phone"] {
     padding: 1rem 0;
 }
 .item-usuarios{
-    background-color: #364c75;
+    background-color: #ced9e9;
     border: #04296d;
-    border-left: 4px solid #ced9e9 ;
+    border-left: 4px solid #04296d ;
     border-radius: 6px;
     padding: 1rem;
     display: flex;
@@ -166,7 +168,7 @@ input[type="phone"] {
     margin: 0.15rem 0;
 }
 
-/* BOTONES DE ACCIÓN (EDITAR Y ELIMINAR) */
+/*BOTONES*/
 .acciones-usuario {
     display: flex;
     flex-direction: column;
@@ -176,13 +178,26 @@ input[type="phone"] {
     background-color: #04296d;
     color: #ffffff;
 }
-
 .btn-eliminar {
     background-color: #e53e3e;
     color: #ffffff;
 }
-
 .btn-editar:hover,
 .btn-eliminar:hover {
     opacity: 0.85;
+}
+
+/*MSJ*/
+.msj-exito {
+    background-color: #c6f6d5;
+    color: #22543d;
+}
+.msj-eliminar {
+    background-color: #fed7d7;
+    color: #9b2c2c;
+}
+.msj-exito,
+.msj-eliminar {
+    margin-top: 1rem;      
+    margin-bottom: 1rem;   
 }
