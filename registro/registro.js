@@ -7,21 +7,21 @@ function toggleEdificio(headerElement) {
 
 const datosEdificios = {
     "ED001": [
-        { nombre: "Juan Pérez", rut:"2231624", estado: "Dentro", hora: "08:30" },
-        { nombre: "María Gómez", rut:"7196767", estado: "Fuera", hora: "12:15" },
-        { nombre: "Carlos Silva", rut:"26782404", estado: "Dentro", hora: "09:05" }
+        { nombre: "Juan Pérez", rut: "2231624", estado: "Dentro", hora: "08:30" },
+        { nombre: "María Gómez", rut: "7196767", estado: "Fuera", hora: "12:15" },
+        { nombre: "Carlos Silva", rut: "26782404", estado: "Dentro", hora: "09:05" }
     ],
     "ED002": [
-        { nombre: "Ana Torres", rut:"1725204", estado: "Dentro", hora: "10:00" },
-        { nombre: "Pedro Morales",rut:"1765202",  estado: "Fuera", hora: "11:40" }
+        { nombre: "Ana Torres", rut: "1725204", estado: "Dentro", hora: "10:00" },
+        { nombre: "Pedro Morales", rut: "1765202", estado: "Fuera", hora: "11:40" }
     ],
     "ED003": [
-        { nombre: "Fernandito Silva", rut:"21030202", estado: "Dentro", hora: "10:00" },
-        { nombre: "Anthony Miles", rut:"22030202", estado: "Fuera", hora: "11:40" }
+        { nombre: "Fernandito Silva", rut: "21030202", estado: "Dentro", hora: "10:00" },
+        { nombre: "Anthony Miles", rut: "22030202", estado: "Fuera", hora: "11:40" }
     ],
     "ED004": [
-        { nombre: "Hernan Hernan", rut:"28165492", estado: "Dentro", hora: "01:00" },
-        { nombre: "Pancho Floo", rut:"21620202",estado: "Fuera", hora: "01:50" }
+        { nombre: "Hernan Hernan", rut: "28165492", estado: "Dentro", hora: "01:00" },
+        { nombre: "Pancho Floo", rut: "21620202", estado: "Fuera", hora: "01:50" }
     ]
 };
 
@@ -74,6 +74,7 @@ btnregistro.addEventListener('click', function () {
     const rutInput = inputRut.value.trim();
     const errorNombre = document.getElementById('errorNombre');
     const errorRUT = document.getElementById('errorRUT');
+    const errorEdificio = document.getElementById('errorEdificio');
 
     if (nombreInput === '') {
         errorNombre.textContent = 'Tienes que agregar un nombre';
@@ -81,12 +82,17 @@ btnregistro.addEventListener('click', function () {
     }
     errorNombre.textContent = '';
 
-    
     if (rutInput === '') {
-        errorNombre.textContent = 'Tienes que agregar un RUT';
+        errorRUT.textContent = 'Tienes que agregar un RUT';
         return;
     }
     errorRUT.textContent = '';
+
+    if(idEdificio ===''){
+        errorEdificio.textContent ='Tienes que escoger un edificio';
+        return;
+    }
+    errorEdificio.textContent ='';
 
     const radioSeleccionado = document.querySelector('input[name="tipo_registro"]:checked');
     if (!radioSeleccionado) {
@@ -114,9 +120,13 @@ btnregistro.addEventListener('click', function () {
     );
 
     if (filaPersona) {
-        const tdEstado = filaPersona.children[1].querySelector('strong');
-        tdEstado.className = `status ${esEntrada ? 'dentro' : 'fuera'}`;
-        tdEstado.textContent = nuevoEstado;
+        filaPersona.children[1].textContent = rutInput;
+
+        const tdEstado = filaPersona.children[2].querySelector('strong');
+        if (tdEstado) {
+            tdEstado.className = `status ${esEntrada ? 'dentro' : 'fuera'}`;
+            tdEstado.textContent = nuevoEstado;
+        }
 
         filaPersona.children[3].textContent = horaFormateada;
     } else {

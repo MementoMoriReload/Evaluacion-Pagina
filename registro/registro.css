@@ -146,10 +146,14 @@ body {
 }
 
 .mensaje-error {
+  display: block;
+  width: 100%;
+  text-align: center;
   color: #d32f2f;
-  font-size: 13px;
+  font-size: 0.85rem;
   margin-top: 4px;
-  min-height: 15px;
+  margin-bottom: 8px;
+  min-height: 18px;
 }
 
 .panel-edificios {
