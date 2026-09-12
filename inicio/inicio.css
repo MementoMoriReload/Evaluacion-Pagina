@@ -10,16 +10,18 @@ body {
     min-height: 100vh;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* ENCABEZADO */
 .encabezado-principal {
-    position: relative;
-    background-color: #869bb8; 
+    background-color: #869bb8;
     color: #ced9e9;
     padding: 1rem 2rem;
-    padding-right: 5rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
@@ -35,9 +37,12 @@ body {
 }
 
 .navegacion-principal ul {
+    margin-right: 190px;
     display: flex;
     list-style: none;
     gap: 1rem;
+    color: #04296d;
+    padding: 0.5rem;
 }
 
 .navegacion-principal {
