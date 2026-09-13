@@ -5,7 +5,7 @@ const passwordInput = document.getElementById('password');
 
 
 loginForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita que la página se recargue
+    event.preventDefault(); 
 
     const usuario = usernameInput.value.trim();
     const contrasena = passwordInput.value.trim();

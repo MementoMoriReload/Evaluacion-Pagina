@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    window.editarUsuario = function(index) {
+    window.editarUsuario = function (index) {
         limpiarErrores();
         const u = usuarios[index];
         document.getElementById('tipoUsuario').value = u.tipoUsuario;
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnEnviar.textContent = 'Guardar Cambios';
     };
 
-    window.eliminarUsuario = function(index) {
+    window.eliminarUsuario = function (index) {
         usuarios.splice(index, 1);
 
         if (indiceEdicion === index) {

@@ -9,7 +9,7 @@ const datosEdificios = {
     "ED001": [
         { nombre: "Juan Pérez", rut: "2231624", estado: "Dentro", hora: "08:30" },
         { nombre: "María Gómez", rut: "7196767", estado: "Fuera", hora: "12:15" },
-        { nombre: "Carlos Silva", rut: "26782404", estado: "Dentro", hora: "09:05" }
+        { nombre: "Carlos Silva", rut: "267824045", estado: "Dentro", hora: "09:05" }
     ],
     "ED002": [
         { nombre: "Ana Torres", rut: "1725204", estado: "Dentro", hora: "10:00" },
@@ -20,13 +20,14 @@ const datosEdificios = {
         { nombre: "Anthony Miles", rut: "22030202", estado: "Fuera", hora: "11:40" }
     ],
     "ED004": [
-        { nombre: "Hernan Hernan", rut: "28165492", estado: "Dentro", hora: "01:00" },
-        { nombre: "Pancho Floo", rut: "21620202", estado: "Fuera", hora: "01:50" }
+        { nombre: "Hernan Hernan", rut: "28165492", estado: "Dentro", hora: "13:00" },
+        { nombre: "Pancho Floo", rut: "21620202", estado: "Fuera", hora: "13:50" }
     ]
 };
 
 function cargarDatosIniciales() {
-    for (const [idEdificio, listaPersonas] of Object.entries(datosEdificios)) {
+    for (const idEdificio in datosEdificios) {
+        const listaPersonas = datosEdificios[idEdificio];
         const tbody = document.getElementById(`tbody-${idEdificio}`);
         if (!tbody) continue;
 
@@ -36,7 +37,7 @@ function cargarDatosIniciales() {
 
         listaPersonas.forEach(p => {
             const tr = document.createElement('tr');
-            tr.setAttribute('data-nombre', p.nombre.toLowerCase());
+            tr.setAttribute('nombre', p.nombre.toLowerCase());
 
             const tdNombre = document.createElement('td');
             tdNombre.textContent = p.nombre;
@@ -76,27 +77,42 @@ btnregistro.addEventListener('click', function () {
     const errorRUT = document.getElementById('errorRUT');
     const errorEdificio = document.getElementById('errorEdificio');
 
+    let esValido = true;
+
     if (nombreInput === '') {
-        errorNombre.textContent = 'Tienes que agregar un nombre';
-        return;
+        document.getElementById('errorNombre').textContent = 'Tienes que agregar un nombre.';
+        esValido = false;
+    } else {
+        errorNombre.textContent = '';
     }
-    errorNombre.textContent = '';
+
 
     if (rutInput === '') {
-        errorRUT.textContent = 'Tienes que agregar un RUT';
-        return;
+        document.getElementById('errorRUT').textContent = 'Tienes que agregar un RUT.';
+        esValido = false;
+    } else if (rutInput.length !== 9) {
+        document.getElementById('errorRUT').textContent = 'El RUT debe tener 9 digitos.';
+        esValido = false;
+    } else {
+        errorRUT.textContent = '';
     }
-    errorRUT.textContent = '';
 
-    if(idEdificio ===''){
-        errorEdificio.textContent ='Tienes que escoger un edificio';
-        return;
+
+    if (idEdificio === '') {
+        document.getElementById('errorEdificio').textContent = 'Tienes que escoger un edificio';
+        esValido = false;
+    } else {
+        errorEdificio.textContent = '';
+
     }
-    errorEdificio.textContent ='';
 
     const radioSeleccionado = document.querySelector('input[name="tipo_registro"]:checked');
     if (!radioSeleccionado) {
         alert('Por favor, selecciona un tipo de movimiento.');
+        return;
+    }
+
+    if (!esValido) {
         return;
     }
 
@@ -115,23 +131,21 @@ btnregistro.addEventListener('click', function () {
         tbody.removeChild(filaVacia);
     }
 
-    let filaPersona = Array.from(tbody.querySelectorAll('tr')).find(tr =>
-        tr.getAttribute('data-nombre') === nombreInput.toLowerCase()
-    );
+    let filaPersona = tbody.querySelector(`tr[nombre="${nombreInput.toLowerCase()}"]`);
 
     if (filaPersona) {
-        filaPersona.children[1].textContent = rutInput;
+        filaPersona.cells[1].textContent = rutInput;
 
-        const tdEstado = filaPersona.children[2].querySelector('strong');
+        const tdEstado = filaPersona.cells[2].querySelector('strong');
         if (tdEstado) {
             tdEstado.className = `status ${esEntrada ? 'dentro' : 'fuera'}`;
             tdEstado.textContent = nuevoEstado;
         }
 
-        filaPersona.children[3].textContent = horaFormateada;
+        filaPersona.cells[3].textContent = horaFormateada;
     } else {
         const tr = document.createElement('tr');
-        tr.setAttribute('data-nombre', nombreInput.toLowerCase());
+        tr.setAttribute('nombre', nombreInput.toLowerCase());
 
         const tdNombre = document.createElement('td');
         tdNombre.textContent = nombreInput;
