@@ -3,8 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const contenedorLista = document.getElementById('listUsuarios');
     const btnEnviar = form.querySelector('.btn-enviar');
     const msjNotificacion = document.getElementById('msjNotificacion');
+    const tituloSeccion = document.querySelector('.encabezado-registro h2');
+    const bajadaSeccion = document.querySelector('.encabezado-registro p');
+    const tarjetaRegistro = document.querySelector('.tarjeta-registro');
+
+    const CLAVE_ADMIN = 'admin123';
 
     let usuarios = [];
+    let usuarioActual = null;
     let indiceEdicion = null;
 
     function mostrarNotificacion(texto, tipo = 'exito') {
@@ -44,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tipoUsuario === '') {
             document.getElementById('error-tipoUsuario').textContent = 'Debe seleccionar un tipo de usuario.';
             esValido = false;
+        } else if (tipoUsuario === 'Administrador') {
+            const clave = prompt('Ingrese la clave de Administrador:');
+            if (clave !== CLAVE_ADMIN) {
+                document.getElementById('error-tipoUsuario').textContent = 'Clave de Administrador incorrecta.';
+                esValido = false;
+            }
         }
 
         if (run === '') {
@@ -108,9 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (indiceEdicion === null) {
             usuarios.push(usuario);
+            usuarioActual = usuario;
             mostrarNotificacion('¡Usuario registrado con éxito!', 'exito');
         } else {
             usuarios[indiceEdicion] = usuario;
+            usuarioActual = usuario;
             indiceEdicion = null;
             btnEnviar.textContent = 'Crear Cuenta';
             mostrarNotificacion('¡Usuario editado con éxito!', 'exito');
@@ -118,41 +132,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
         form.reset();
         limpiarErrores();
-        renderizarUsuarios();
+        mostrarUsuarios();
     });
 
-    function renderizarUsuarios() {
+    function mostrarUsuarios() {
         contenedorLista.innerHTML = '';
 
-        if (usuarios.length === 0) {
-            contenedorLista.innerHTML = '<p class="sin-registros">No hay usuarios registrados.</p>';
+        if (!usuarioActual || usuarios.length === 0) {
+            if (tarjetaRegistro) {
+                tarjetaRegistro.style.display = 'none';
+            }
             return;
         }
 
-        usuarios.forEach((user, index) => {
+        if (tarjetaRegistro) {
+            tarjetaRegistro.style.display = 'block';
+        }
+
+        const esAdmin = usuarioActual.tipoUsuario === 'Administrador';
+
+        if (tituloSeccion) {
+            tituloSeccion.textContent = esAdmin ? 'Usuarios Registrados' : 'Mi Cuenta';
+        }
+        if (bajadaSeccion) {
+            bajadaSeccion.textContent = esAdmin 
+                ? 'Lista global de usuarios ingresados en el sistema.' 
+                : 'Información de tu perfil actual.';
+        }
+
+        const usuariosConIndex = usuarios.map((user, index) => ({ user, originalIndex: index }));
+        const listaAMostrar = esAdmin
+            ? usuariosConIndex
+            : usuariosConIndex.filter(item => item.user.run === usuarioActual.run);
+
+        listaAMostrar.forEach(({ user, originalIndex }) => {
             const tarjetaItem = document.createElement('div');
             tarjetaItem.className = 'item-usuarios';
 
-            tarjetaItem.innerHTML = `
-                <div class="info-usuario">
-                    <h4>${user.nombre} ${user.apellido}</h4>
-                    <p><strong>Tipo:</strong> ${user.tipoUsuario}</p>
-                    <p><strong>RUT:</strong> ${user.run}</p>
-                    <p><strong>Email:</strong> ${user.email}</p>
-                    <p><strong>Teléfono:</strong> +569 ${user.telefono}</p>
-                    <p><strong>F. Nacimiento:</strong> ${user.fechaNac}</p>
-                </div>
-                <div class="acciones-usuario">
-                    <button type="button" class="btn-editar" onclick="editarUsuario(${index})">Editar</button>
-                    <button type="button" class="btn-eliminar" onclick="eliminarUsuario(${index})">Eliminar</button>
-                </div>
-            `;
+            const botonEliminar = esAdmin
+                ? '<button type="button" class="btn-eliminar" onclick="eliminarUsuario(' + originalIndex + ')">Eliminar</button>'
+                : '';
+
+            tarjetaItem.innerHTML = 
+                '<div class="info-usuario">' +
+                    '<h4>' + user.nombre + ' ' + user.apellido + '</h4>' +
+                    '<p><strong>Tipo:</strong> ' + user.tipoUsuario + '</p>' +
+                    '<p><strong>RUT:</strong> ' + user.run + '</p>' +
+                    '<p><strong>Email:</strong> ' + user.email + '</p>' +
+                    '<p><strong>Teléfono:</strong> +569 ' + user.telefono + '</p>' +
+                    '<p><strong>F. Nacimiento:</strong> ' + user.fechaNac + '</p>' +
+                '</div>' +
+                '<div class="acciones-usuario">' +
+                    '<button type="button" class="btn-editar" onclick="editarUsuario(' + originalIndex + ')">Editar</button>' +
+                    botonEliminar +
+                '</div>';
 
             contenedorLista.appendChild(tarjetaItem);
         });
     }
 
-    window.editarUsuario = function (index) {
+    mostrarUsuarios();
+
+    window.editarUsuario = function(index) {
         limpiarErrores();
         const u = usuarios[index];
         document.getElementById('tipoUsuario').value = u.tipoUsuario;
@@ -167,8 +208,14 @@ document.addEventListener('DOMContentLoaded', () => {
         btnEnviar.textContent = 'Guardar Cambios';
     };
 
-    window.eliminarUsuario = function (index) {
-        usuarios.splice(index, 1);
+    window.eliminarUsuario = function(index) {
+        const usuarioEliminado = usuarios[index];
+
+        usuarios = usuarios.filter((_, i) => i !== index);
+
+        if (usuarioActual && usuarioActual.run === usuarioEliminado.run) {
+            usuarioActual = null;
+        }
 
         if (indiceEdicion === index) {
             form.reset();
@@ -177,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnEnviar.textContent = 'Crear Cuenta';
         }
 
-        renderizarUsuarios();
+        mostrarUsuarios();
         mostrarNotificacion('¡Usuario eliminado con éxito!', 'eliminar');
     };
 });
