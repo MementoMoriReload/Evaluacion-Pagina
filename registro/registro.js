@@ -1,27 +1,22 @@
 const btnregistro = document.getElementById('btn-registro');
 
-function toggleEdificio(headerElement) {
-    const contenido = headerElement.nextElementSibling;
-    contenido.style.display = (contenido.style.display === "none") ? "block" : "none";
-}
-
 const datosEdificios = {
     "ED001": [
-        { nombre: "Juan Pérez", rut: "2231624", estado: "Dentro", hora: "08:30" },
-        { nombre: "María Gómez", rut: "7196767", estado: "Fuera", hora: "12:15" },
+        { nombre: "Juan Pérez", rut: "223162485", estado: "Dentro", hora: "08:30" },
+        { nombre: "María Gómez", rut: "719676767", estado: "Fuera", hora: "12:15" },
         { nombre: "Carlos Silva", rut: "267824045", estado: "Dentro", hora: "09:05" }
     ],
     "ED002": [
-        { nombre: "Ana Torres", rut: "1725204", estado: "Dentro", hora: "10:00" },
+        { nombre: "Ana Torres", rut: "172520432", estado: "Dentro", hora: "10:00" },
         { nombre: "Pedro Morales", rut: "1765202", estado: "Fuera", hora: "11:40" }
     ],
     "ED003": [
-        { nombre: "Fernandito Silva", rut: "21030202", estado: "Dentro", hora: "10:00" },
+        { nombre: "Fernandito Silva", rut: "2103020212", estado: "Dentro", hora: "10:00" },
         { nombre: "Anthony Miles", rut: "22030202", estado: "Fuera", hora: "11:40" }
     ],
     "ED004": [
-        { nombre: "Hernan Hernan", rut: "28165492", estado: "Dentro", hora: "13:00" },
-        { nombre: "Pancho Floo", rut: "21620202", estado: "Fuera", hora: "13:50" }
+        { nombre: "Hernan Hernan", rut: "281654929", estado: "Dentro", hora: "13:00" },
+        { nombre: "Pancho Floo", rut: "216202023", estado: "Fuera", hora: "13:50" }
     ]
 };
 
