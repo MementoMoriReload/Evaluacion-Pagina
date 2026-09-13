@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="encabezado-principal">
+        <div class="contenedor-logo">
+            <a>
+                <h1 class="titulo-empresa">Acceso Seguro</h1>
+                <span class="subtitulo-empresa">Soluciones de control de acceso y asistencia</span>
+            </a>
+        </div>
+
+        <nav class="navegacion-principal">
+             <ul>
+                <li><a href="/inicio/inicio.html" class="enlace-nav">Inicio</a></li>
+                <li><a href="/registro/registro.html" class="enlace-nav">Control Entradas-Salidas</a></li>
+                <li><a href="/inicioSesion/login.html" class="enlace-nav">Iniciar Sesión</a></li>
+                <li><a href="/creacionCuentas/creacion.html" class="enlace-nav">Crear Cuenta</a></li>
+            </ul>
+        </nav>
+        <img src="/img/Logo2.png" alt="Logo Acceso Seguro" class="img-logo">
+    </header>
+
+    <main class="contenedor-principal">
+        <section class="tarjeta-form">
+            <header class="encabezado-form">
+                <h2>Recuperar Contraseña</h2>
+                <p>Ingresa tus datos para solicitar el restablecimiento de tu clave.</p>
+                <hr class="divisor">
+            </header>
+
+            <form id="formRecuperar" action="#" method="POST" novalidate>
+                <div class="campos">
+                    <div class="campo-form">
+                        <label for="run">RUT<span class="requerido">*</span></label>
+                        <input type="text" id="run" name="run" placeholder="Ingresar RUT (sin puntos ni guion)" maxlength="9" required>
+                        <span class="msj-error" id="error-run"></span>
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="email">Correo Institucional<span class="requerido">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="correo.electronico@dominio.com" maxlength="80" required>
+                        <span class="msj-error" id="error-email"></span>
+                    </div>
+                </div>
+
+                <button type="submit" id="btnEnviar" class="btn-enviar">Enviar Código de Verificación</button>
+            </form>
+
+            <div id="msjNotificacion" style="display: none;"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
