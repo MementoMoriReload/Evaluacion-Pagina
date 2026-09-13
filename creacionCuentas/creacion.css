@@ -294,3 +294,16 @@ select {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+.registro {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 15px;
+    color: #555;
+}
+
+.registro a {
+    color: #04296d;
+    text-decoration: none;
+    font-size: 15px;
+}
