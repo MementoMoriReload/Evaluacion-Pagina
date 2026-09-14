@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!msjNotificacion) return;
 
         msjNotificacion.textContent = texto;
-        msjNotificacion.className = tipo === 'eliminar' ? 'msj-eliminar' : 'msj-exito';
+        // Reemplazado con clases de alertas de Bootstrap
+        msjNotificacion.className = tipo === 'eliminar' ? 'alert alert-danger' : 'alert alert-success';
         msjNotificacion.style.display = 'block';
 
         setTimeout(() => {
@@ -167,24 +168,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         listaAMostrar.forEach(({ user, originalIndex }) => {
             const tarjetaItem = document.createElement('div');
-            tarjetaItem.className = 'item-usuarios';
+            // Formato de tarjeta (Card) de Bootstrap
+            tarjetaItem.className = 'card mb-3 p-3 shadow-sm';
 
+            // Botón eliminar con estilo Bootstrap Danger
             const botonEliminar = esAdmin
-                ? '<button type="button" class="btn-eliminar" onclick="eliminarUsuario(' + originalIndex + ')">Eliminar</button>'
+                ? '<button type="button" class="btn btn-sm btn-danger ms-2" onclick="eliminarUsuario(' + originalIndex + ')">Eliminar</button>'
                 : '';
 
             tarjetaItem.innerHTML = 
-                '<div class="info-usuario">' +
-                    '<h4>' + user.nombre + ' ' + user.apellido + '</h4>' +
-                    '<p><strong>Tipo:</strong> ' + user.tipoUsuario + '</p>' +
-                    '<p><strong>RUT:</strong> ' + user.run + '</p>' +
-                    '<p><strong>Email:</strong> ' + user.email + '</p>' +
-                    '<p><strong>Teléfono:</strong> +569 ' + user.telefono + '</p>' +
-                    '<p><strong>F. Nacimiento:</strong> ' + user.fechaNac + '</p>' +
-                '</div>' +
-                '<div class="acciones-usuario">' +
-                    '<button type="button" class="btn-editar" onclick="editarUsuario(' + originalIndex + ')">Editar</button>' +
-                    botonEliminar +
+                '<div class="card-body p-0">' +
+                    '<h5 class="card-title h4">' + user.nombre + ' ' + user.apellido + '</h5>' +
+                    '<p class="card-text mb-1"><strong>Tipo:</strong> ' + user.tipoUsuario + '</p>' +
+                    '<p class="card-text mb-1"><strong>RUT:</strong> ' + user.run + '</p>' +
+                    '<p class="card-text mb-1"><strong>Email:</strong> ' + user.email + '</p>' +
+                    '<p class="card-text mb-1"><strong>Teléfono:</strong> +569 ' + user.telefono + '</p>' +
+                    '<p class="card-text mb-2"><strong>F. Nacimiento:</strong> ' + user.fechaNac + '</p>' +
+                    '<div class="mt-3">' +
+                        '<button type="button" class="btn btn-sm btn-warning" onclick="editarUsuario(' + originalIndex + ')">Editar</button>' +
+                        botonEliminar +
+                    '</div>' +
                 '</div>';
 
             contenedorLista.appendChild(tarjetaItem);
